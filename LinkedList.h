@@ -39,7 +39,9 @@ void Display(struct LinkedList* list) {
 
 void DisplayOnlyThis(struct LinkedList* list){
 
-	printf("index 0: %d\n", list->val);
+	struct LinkedList* current = list;
+
+	printf("index 0: %d\n", current->val);
 }
 
 int GetItemCount(struct LinkedList* list){
@@ -195,13 +197,13 @@ void Remove(struct LinkedList** list, int value){
 
 void DeleteList(struct LinkedList** list){
 
-	struct LinkedList* current = *list;
-	struct LinkedList* delete;
+	struct LinkedList** current = list;
+	struct LinkedList** delete;
 
-	while(current->next_cell_addr != NULL){
+	while((*current)->next_cell_addr != NULL){
 
 		delete = current;
-		current = current->next_cell_addr;
+		(*current) = (*current)->next_cell_addr;
 
 		free(delete);
 	}
